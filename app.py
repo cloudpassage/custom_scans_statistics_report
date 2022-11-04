@@ -19,21 +19,21 @@ def main():
     halo_group_id = config.halo_group_id
     scan_module_name = config.module_name
     script_start_time = time.time()
-    util.log_stdout("1- Creating HALO API CALLER Object.")
+    util.log_stdout("   Creating HALO API CALLER Object.")
     halo_api_caller_obj = halo_api_caller.HaloAPICaller(config)
 
     """
     First we make sure that all configs are sound...
     """
     util.log_stdout(
-        "2- Checking the provided configuration parameters")
+        "   Checking the provided configuration parameters")
     check_configs(config, halo_api_caller_obj, util)
 
     """
     Retrieving Total Number of Servers that belongs to the provided Group
     """
     util.log_stdout(
-        "3- Retrieving Total Number of Servers that belongs to Group ID: %s" % halo_group_id)
+        "   Retrieving Total Number of Servers that belongs to Group ID: %s" % halo_group_id)
     group_servers_list = halo_api_caller_obj.get_group_servers(halo_group_id)
     group_servers_list_data = group_servers_list[0]
     try:
@@ -46,7 +46,7 @@ def main():
     Preparing CSV File to store the report results into it
     """
     util.log_stdout(
-        "4- Preparing CSV File (Name and Location) to store the report results into it")
+        "   Preparing CSV File (Name and Location) to store the report results into it")
     absolute_path, file_name, current_time = json_to_csv_obj.prepare_csv_file(
         output_directory)
 
@@ -57,7 +57,7 @@ def main():
     Retrieving & Exporting Report Data into the CSV file
     """
     util.log_stdout(
-        "5- Retrieving & Exporting Report Data into the CSV file")
+        "   Retrieving & Exporting Report Data into the CSV file")
     header_flag = True
     row_counter = 0
     all_scans_completed_clean = 0
@@ -157,7 +157,7 @@ def main():
     Adding Overall Scans Statistics into the CSV file
     """
     util.log_stdout(
-        "6- Adding Overall Scans Statistics into the CSV file")
+        "   Adding Overall Scans Statistics into the CSV file")
     with open(absolute_path, 'r') as readFile:
         reader = csv.reader(readFile)
         lines = list(reader)
@@ -184,7 +184,7 @@ def main():
     Operation Completed
     """
     util.log_stdout(
-        "7- Operation Completed, Check Generated CSV File!")
+        "   Operation Completed, Check Generated CSV File!")
 
     script_end_time = time.time()
     consumed_time = script_end_time - script_start_time
