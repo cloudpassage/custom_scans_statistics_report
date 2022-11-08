@@ -12,24 +12,24 @@ class Utility(object):
         return retval
 
     @classmethod
-    def log_stdout(cls, message, component="CLOUD_CSM_REPORTS"):
+    def log_stdout(cls, message, component="CUSTOM_SCANS_STATISTICS_REPORT"):
         """Log messages to stdout.
 
         Args:
             message(str): Message to be logged to stdout.
-            component(str): Component name. Defaults to "CLOUD_CSM_REPORTS".
+            component(str): Component name. Defaults to "CUSTOM_SCANS_STATISTICS_REPORT".
         """
         out = "%s: %s" % (component, message)
         print(out, file=sys.stdout)
         return
 
     @classmethod
-    def log_stderr(cls, message, component="CLOUD_CSM_REPORTS"):
+    def log_stderr(cls, message, component="CUSTOM_SCANS_STATISTICS_REPORT"):
         """Log messages to stderr.
 
         Args:
             message(str): Message to be logged to stdout.
-            component(str): Component name. Defaults to "CLOUD_CSM_REPORTS".
+            component(str): Component name. Defaults to "CUSTOM_SCANS_STATISTICS_REPORT".
         """
         out = "%s: %s" % (component, message)
         print(out, file=sys.stderr)
