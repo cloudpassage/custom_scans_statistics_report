@@ -50,8 +50,9 @@ def main():
     absolute_path, file_name, current_time = json_to_csv_obj.prepare_csv_file(
         output_directory)
 
-    table_header = ['OS Type', 'OS Version', 'Server Hostname', 'Reported FQDN', 'Completed Clean', 'Completed With Errors',
-                    'Failed', 'Pending', 'Queued', 'Running']
+    table_header = ['OS Type', 'OS Version', 'Server Hostname', 'Reported FQDN', 'CSP Account ID', 'CSP Availability Zone',
+    'CSP Image ID', 'CSP Instnace ID', 'CSP Instance Type', 'CSP Kernal ID', 'CSP Private IP Address', 'CSP Region', 
+    'CSP Security Groups', 'Completed Clean', 'Completed With Errors', 'Failed', 'Pending', 'Queued', 'Running']
 
     """
     Retrieving & Exporting Report Data into the CSV file
@@ -77,6 +78,15 @@ def main():
             os_version = server['os_version']
             server_hostname = server['hostname']
             reported_fqdn = server['reported_fqdn']
+            csp_account_id = server['csp_account_id']
+            csp_availability_zone = server['csp_availability_zone']
+            csp_image_id = server['csp_image_id']
+            csp_instance_id = server['csp_instance_id']
+            csp_instance_type = server['csp_instance_type']
+            csp_kernel_id = server['csp_kernel_id']
+            csp_private_ip = server['csp_private_ip']
+            csp_region = server['csp_region']
+            csp_security_groups = server['csp_security_groups']
 
             server_scans_results = halo_api_caller_obj.get_server_scans(
                 server_id, scan_module_name)
@@ -128,9 +138,10 @@ def main():
                     else:
                         continue
 
-            table_row = [os_type, os_version, server_hostname, reported_fqdn, server_scans_completed_clean,
-                         server_scans_completed_with_errors, server_scans_failed, server_scans_pending,
-                         server_scans_queued, server_scans_running]
+            table_row = [os_type, os_version, server_hostname, reported_fqdn, csp_account_id, csp_availability_zone,
+            csp_image_id, csp_instance_id, csp_instance_type, csp_kernel_id, csp_private_ip, csp_region, csp_security_groups,
+            server_scans_completed_clean, server_scans_completed_with_errors, server_scans_failed, server_scans_pending,
+            server_scans_queued, server_scans_running]
 
             with open(absolute_path, 'a', newline='') as f:
                 writer = csv.writer(f)
